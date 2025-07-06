@@ -2,12 +2,15 @@ package dev.rupam.cicdtool.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
 
+@Slf4j
 @Component
 public class JwtUtil {
 
@@ -22,7 +25,7 @@ public class JwtUtil {
     }
 
     public String generateToken(String username) {
-        System.out.println("🔐 Signing with: " + secret);
+        log.debug("Generating token for user: {}", username);
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
@@ -32,7 +35,7 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
-        System.out.println("🔍 Validating with: " + secret);
+        log.debug("Extracting username from token");
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
@@ -41,15 +44,22 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    public boolean validateToken(String token) {
+    public boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public boolean isTokenExpired(String token) {
         try {
-            Jwts.parserBuilder()
+            Date expiration = Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
                     .build()
-                    .parseClaimsJws(token);
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getExpiration();
+            return expiration.before(new Date());
+        } catch (ExpiredJwtException e) {
             return true;
-        } catch (JwtException e) {
-            return false;
         }
     }
 }
