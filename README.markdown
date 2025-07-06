@@ -2,7 +2,7 @@
 
 A self-hosted CI/CD platform to automate deployments, manage GitHub webhooks, and monitor builds — built with **Spring Boot**, **React**, **PostgreSQL**, and **Docker**.
 
-> ✅ Phase 1 Complete: Backend Auth, GitHub Webhook Listener, Frontend Setup
+> ✅ Phase 2 Complete: Backend Auth, GitHub Webhook Listener, Frontend Setup, Frontend Auth, Role-based Dashboard
 
 ---
 
@@ -11,6 +11,8 @@ A self-hosted CI/CD platform to automate deployments, manage GitHub webhooks, an
 - 🔐 JWT-based authentication (Login/Register)
 - 🧑‍💻 Role-based access control (ADMIN, DEVELOPER)
 - 🔗 GitHub webhook endpoint (`push` event listener)
+- 📊 Frontend auth integration with JWT
+- 📈 Role-based dashboard views
 - 🏗️ Clean monorepo project architecture
 - 🌐 Frontend bootstrapped with Vite + Tailwind CSS
 
@@ -43,9 +45,12 @@ ci-cd-tool/
 │   └── application.properties  # Configuration file
 │
 ├── frontend/                   # React + Vite + Tailwind
-│   ├── pages/                  # Page components
+│   ├── assets/                 # Static assets (images, fonts, etc.)
+│   ├── auth/                   # Authentication-related components
 │   ├── components/             # Reusable UI components
-│   ├── api/                    # API call utilities
+│   ├── dashboard/              # Dashboard-related components
+│   ├── utils/                  # Utility functions and helpers
+│   ├── admin/                  # Admin panel components
 │   └── App.jsx, main.jsx       # Main React entry points
 │
 ├── README.md                   # Project documentation
@@ -79,7 +84,7 @@ POST /api/webhook/github
 Accepts: application/json
 ```
 * Tested with: `push` event
-* Currently logs payload to console (Phase 2 will store events and trigger builds)
+* Currently logs payload to console (Phase 3 will store events and trigger builds)
 
 **Development Tip**: Use `ngrok` for webhook testing:
 ```bash
@@ -94,10 +99,12 @@ ngrok http 8080
 |-------|----------|--------|
 | 0     | Project planning, architecture, repo setup | ✅ Done |
 | 1     | JWT auth, webhook endpoint, frontend scaffold | ✅ Done |
-| 2     | GitHub webhook parsing, store events, basic dashboard | 🔜 Next |
-| 3     | Docker build triggers, webhook signature verification | ⏳ Planned |
-| 4     | Frontend logs UI, manual deploy buttons, CI integration | ⏳ Planned |
-| 5     | AWS deploy, S3 logs, SES email alerts, analytics | ⏳ Planned |
+| 2     | Frontend auth integration, role-based dashboard views | ✅ Done |
+| 3     | Register repos via UI, receive webhooks on push, store trigger data in DB | 🔜 Next |
+| 4     | Clone repo from GitHub, build Docker image on push, run container locally | ⏳ Planned |
+| 5     | Deploy Docker container to AWS EC2, upload logs to S3, email status via SES | ⏳ Planned |
+| 6     | Show build status/logs, admin panel for managing repos, improve responsiveness | ⏳ Planned |
+| 7     | Host frontend (Netlify/S3) and backend (EC2), final README with demo | ⏳ Planned |
 
 ---
 
