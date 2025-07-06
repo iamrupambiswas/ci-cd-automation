@@ -1,6 +1,7 @@
 # Java
 backend/target/
 *.class
+backend/src/main/resources/application.properties
 
 # Node
 frontend/node_modules/

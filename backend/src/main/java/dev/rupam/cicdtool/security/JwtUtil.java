@@ -22,6 +22,7 @@ public class JwtUtil {
     }
 
     public String generateToken(String username) {
+        System.out.println("🔐 Signing with: " + secret);
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
@@ -31,6 +32,7 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
+        System.out.println("🔍 Validating with: " + secret);
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
