@@ -90,20 +90,22 @@ ngrok http 8080
 
 ## 🛣️ Roadmap
 
-| Phase | Features | Status |
-|-------|----------|--------|
-| 0     | Project planning, architecture, repo setup | ✅ Done |
-| 1     | JWT auth, webhook endpoint, frontend scaffold | ✅ Done |
-| 2     | GitHub webhook parsing, store events, basic dashboard | 🔜 Next |
-| 3     | Docker build triggers, webhook signature verification | ⏳ Planned |
-| 4     | Frontend logs UI, manual deploy buttons, CI integration | ⏳ Planned |
-| 5     | AWS deploy, S3 logs, SES email alerts, analytics | ⏳ Planned |
+| Phase | Description | Status |
+|-------|-------------|--------|
+| 0     | Project planning, architecture, GitHub repo setup | ✅ Done |
+| 1     | Backend setup: Spring Boot + JWT auth + RBAC + APIs | ✅ Done |
+| 2     | GitHub repo registration UI, webhook listener, DB storage | 🔜 Next |
+| 3     | Docker build triggers, GitHub webhook signature validation | ⏳ Planned |
+| 4     | Frontend: Build logs, status UI, manual deploy buttons | ⏳ Planned |
+| 5     | Deploy Docker container to AWS EC2 + SES + S3 integration | ⏳ Planned |
+| 6     | Final dashboard polish, admin panel, UX enhancements | ⏳ Planned |
+| 7     | Hosting, documentation, and final showcase/demo | ⏳ Planned |
 
 ---
 
 ## 🧑‍💻 Author
 Rupam Biswas  
-🔗 [Medium](https://medium.com/@your-medium-handle) | [LinkedIn](https://linkedin.com/in/your-linkedin-handle)
+🔗 [LinkedIn](https://linkedin.com/in/iamrupambiswas)
 
 ---
 
@@ -121,3 +123,5 @@ Please ensure your code adheres to the project's coding standards.
 
 ## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
